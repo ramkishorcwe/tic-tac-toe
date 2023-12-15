@@ -1,0 +1,29 @@
+.modal{
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 60vw;
+    height: 180px;
+    background-color: rgb(189, 222, 228);
+    margin: auto;
+    text-align: center;
+}
+.container{
+    position: relative;
+
+}
+.modal-buttons{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    .modal-button{
+        width: fit-content;
+        height: 40px;
+        border: unset;
+        border-radius: 5px;
+        padding: 10px;
+    }
+}
