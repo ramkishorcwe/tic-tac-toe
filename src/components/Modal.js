@@ -1,35 +1,43 @@
 import "./Modal.css";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import GameContext from "./context/GameContext";
 
 function Modal({ message, resetButton, winPlayer = "" }) {
   const [modalShow, setModalShow] = useState(true);
-
+  const {
+    setWinCount,
+    setTieCount,
+    setCounter,
+    setWinStatus,
+    setDisableStatus,
+    setOddPlayerTurn,
+    setValues,
+    setClickedValueIndex,
+    setRedoValues,
+  } = useContext(GameContext);
   return (
     <>
       {modalShow && (
         <div className="container">
           <div className="modal">
-            <p>{winPlayer ? `${winPlayer} Player ${message}` : message}</p>
+            <p className="win-message">
+              {winPlayer ? `${winPlayer} Player ${message}` : message}
+            </p>
             <div className="modal-buttons">
               <button
                 className="modal-button"
                 onClick={() => {
                   setModalShow(false);
-                  localStorage.setItem("winCount", 0);
-                  localStorage.setItem("tie", 0);
-                  localStorage.setItem("oddPlayerTurn", true);
-                  localStorage.setItem("disableStatus", false);
-                  localStorage.setItem("counter", 0);
-                  localStorage.setItem("winStatus", false);
-                  localStorage.setItem(
-                    "values",
-                    JSON.stringify({
-                      value: ["", "", "", "", "", "", "", "", ""],
-                    })
-                  );
-                  window.close();
-                }
-              }
+                  setCounter(0);
+                  setWinStatus(false);
+                  setDisableStatus(true);
+                  setOddPlayerTurn(true); //false
+                  setValues(["", "", "", "", "", "", "", "", ""]);
+                  setClickedValueIndex([]);
+                  setRedoValues([]);
+                  setWinCount(0);
+                  setTieCount(0);
+                }}
               >
                 Quit
               </button>
